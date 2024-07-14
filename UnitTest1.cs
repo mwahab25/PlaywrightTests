@@ -10,10 +10,10 @@ namespace PlaywrightTests;
 [TestFixture]
 public class ExampleTest : PageTest
 {
+
      [SetUp]
     public async Task SetUp()
     {
-        
         await Context.Tracing.StartAsync(new()
         {
             Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
@@ -21,7 +21,11 @@ public class ExampleTest : PageTest
             Snapshots = true,
             Sources = true
         });
+
         await Page.GotoAsync("https://playwright.dev");
+
+        //dotnet test --settings .runsettings
+        
     }
 
     [TearDown]
@@ -35,6 +39,7 @@ public class ExampleTest : PageTest
                 $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
             )
         });
+
     }
 
     [Test]
