@@ -55,4 +55,10 @@ public class ExampleTest : PageTest
         // Expects page to have a heading with the name of Installation.
         await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
     } 
+
+     [Test]
+    public async Task Test1()
+    {
+        await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
+    }
 }
