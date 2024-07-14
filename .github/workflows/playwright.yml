@@ -19,3 +19,8 @@ jobs:
       run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
     - name: Run your tests
       run: dotnet test
+    - name: upload Test artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-traces
+        path: test-results
