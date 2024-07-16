@@ -82,6 +82,8 @@ settings Example
     </Playwright>
     </RunSettings>
     ```
+    
+Run with settings
 
     dotnet test --settings .runsettings
 
