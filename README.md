@@ -1,6 +1,6 @@
 # Playwright with .NET and NUnit
 
-## Install Playwright
+## Installation
 
 ```sh
 dotnet new nunit -n PlaywrightTests
@@ -39,7 +39,7 @@ public class ExampleTest : PageTest
             //Create Locator
             var getStarted = Page.GetByRole(AriaRole.Link, new() { Name = "Get started" });
 
-            //Make action in Locator
+            //Interactions in Locator
             await getStarted.ClickAsync();
 
             await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
@@ -50,25 +50,16 @@ public class ExampleTest : PageTest
     }
 ```
 
-## Test Hooks
-
-```cs
-[SetUp]
-public async Task SetUp()
-{
-    await Page.GotoAsync("https://playwright.dev");
-}
-```
-
 ## Run Test
 
 ```sh
 dotnet test 
 dotnet test --filter "ExampleTest"
 dotnet test --filter "ExampleTest1|ExampleTest2"
+dotnet test --settings .runsettings
 ```
 
-## Settings Example
+## runsettings Example
    
 ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -84,42 +75,42 @@ dotnet test --filter "ExampleTest1|ExampleTest2"
     </RunSettings>
 ```
 
-## Run with settings
-
-```sh
-dotnet test --settings .runsettings
-```
-
-## Codegen
+## Generating locators by Codegen
 
 ```sh
 pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
 ```
 
-## Trace viewer
+## Recording a Trace
 
 ```cs
-Setup
-await Context.Tracing.StartAsync(new()
+[SetUp]
+public async Task Setup()
     {
-        Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
-        Screenshots = true,
-        Snapshots = true,
-        Sources = true
-    });
+        await Context.Tracing.StartAsync(new()
+        {
+            Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
+            Screenshots = true,
+            Snapshots = true,
+            Sources = true
+        });
+    }
 
-TearDown
-await Context.Tracing.StopAsync(new()
+[TearDown]
+public async Task TearDown()
     {
-        Path = Path.Combine(
-            TestContext.CurrentContext.WorkDirectory,
-            "playwright-traces",
-            $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
-        )
-    });
+        await Context.Tracing.StopAsync(new()
+        {
+            Path = Path.Combine(
+                TestContext.CurrentContext.WorkDirectory,
+                "playwright-traces",
+                $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
+            )
+        });
+    }
 ```
 
-## Opening the trace
+## Opening the Trace
 
 ```sh
 pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
@@ -161,7 +152,7 @@ jobs:
 ```sh
 git init
 git add .
-git commit -m "first commit"
+git commit -m "write comment"
 git branch -M main
 git remote add origin url
 git push -u origin main 
