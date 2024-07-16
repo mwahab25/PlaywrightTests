@@ -1,26 +1,29 @@
 Playwright Automation Tests 
 
-Playwright .NET NUNIT
+Playwright .NET NUnit
 
 cmd =>
-dotnet new nunit -n PlaywrightTests
-cd PlaywrightTests
-dotnet add package Microsoft.Playwright.NUnit
-dotnet build
+    dotnet new nunit -n PlaywrightTests
+    cd PlaywrightTests
+    dotnet add package Microsoft.Playwright.NUnit
+    dotnet build
 
 install PowerShell
-powershell => winget search Microsoft.PowerShell
-cmd => dotnet tool install --global PowerShell
+
+powershell => 
+    winget search Microsoft.PowerShell
+cmd => 
+    dotnet tool install --global PowerShell
 
 
 install Requires Browser
-pwsh bin/Debug/net8.0/playwright.ps1 install
+    pwsh bin/Debug/net8.0/playwright.ps1 install
 
 
 ExampleTest
 
-public class ExampleTest : PageTest
-{
+    public class ExampleTest : PageTest
+    {
     [Test]
     public async Task Test1()
     {
@@ -41,7 +44,7 @@ public class ExampleTest : PageTest
         Page.Locator("#rhs");
 
     }
-}
+    }
 
 Test Hooks
 
@@ -52,9 +55,9 @@ Test Hooks
     }
 
 
-dotnet test 
-dotnet test --filter "ExampleTest"
-dotnet test --filter "ExampleTest1|ExampleTest2"
+    dotnet test 
+    dotnet test --filter "ExampleTest"
+    dotnet test --filter "ExampleTest1|ExampleTest2"
 
 
 
@@ -72,10 +75,10 @@ settings Example
   </Playwright>
 </RunSettings>
 
-dotnet test --settings .runsettings
+    dotnet test --settings .runsettings
 
 Codegen
-pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
+    pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
 
 
 Trace viewer
@@ -97,7 +100,7 @@ TearDown
             )
 
 Opening the trace
-pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
+    pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
 
 
 CI GitHub Actions
@@ -133,10 +136,10 @@ jobs:
 
 
 Create a Repo and Push to GitHub
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin url
-git push -u origin main 
+    git init
+    git add .
+    git commit -m "first commit"
+    git branch -M main
+    git remote add origin url
+    git push -u origin main 
 
