@@ -1,71 +1,74 @@
-###Playwright Automation Tests 
+## Playwright .NET NUnit
 
-##Playwright .NET NUnit
+# Install Playwright
 
-#cmd
+```sh
+dotnet new nunit -n PlaywrightTests
+cd PlaywrightTests
+dotnet add package Microsoft.Playwright.NUnit
+dotnet build
+```
 
-    dotnet new nunit -n PlaywrightTests
-    cd PlaywrightTests
-    dotnet add package Microsoft.Playwright.NUnit
-    dotnet build
+# install PowerShell
 
-install PowerShell
+```sh
+winget search Microsoft.PowerShell
+dotnet tool install --global PowerShell
+```
 
-powershell
+# install Requires Browser
 
-    winget search Microsoft.PowerShell
+```sh
+pwsh bin/Debug/net8.0/playwright.ps1 install
+```
 
-cmd
+# Playwright ExampleTest
 
-    dotnet tool install --global PowerShell
-
-
-install Requires Browser
-
-    pwsh bin/Debug/net8.0/playwright.ps1 install
-
-
-ExampleTest
-
-    public class ExampleTest : PageTest
+```cs
+public class ExampleTest : PageTest
     {
-    [Test]
-    public async Task Test1()
-    {
-        //Navigation
-        await Page.GotoAsync("url");
+        [Test]
+        public async Task Test1()
+        {
+            //Navigation
+            await Page.GotoAsync("url");
 
-        //Assertion
-        await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
+            //Assertion
+            await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
 
-        //Create Locator
-        var getStarted = Page.GetByRole(AriaRole.Link, new() { Name = "Get started" });
+            //Create Locator
+            var getStarted = Page.GetByRole(AriaRole.Link, new() { Name = "Get started" });
 
-        //Make action in Locator
-        await getStarted.ClickAsync();
+            //Make action in Locator
+            await getStarted.ClickAsync();
 
-        await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
+            await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
 
-        Page.Locator("#rhs");
+            Page.Locator("#rhs");
 
+        }
     }
-    }
+```
 
-Test Hooks
+# Test Hooks
 
-    [SetUp]
-    public async Task SetUp()
-    {
-        await Page.GotoAsync("https://playwright.dev");
-    }
+```cs
+[SetUp]
+public async Task SetUp()
+{
+    await Page.GotoAsync("https://playwright.dev");
+}
+```
 
-Run Test
+# Run Test
 
-    dotnet test 
-    dotnet test --filter "ExampleTest"
-    dotnet test --filter "ExampleTest1|ExampleTest2"
+```sh
+dotnet test 
+dotnet test --filter "ExampleTest"
+dotnet test --filter "ExampleTest1|ExampleTest2"
+```
 
-settings Example
+# settings Example
    
 ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -81,55 +84,58 @@ settings Example
     </RunSettings>
 ```
 
-Run with settings
-```
-    dotnet test --settings .runsettings
+# Run with settings
+
+```sh
+dotnet test --settings .runsettings
 ```
 
-Codegen
-```
-    pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
+# Codegen
+
+```sh
+pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
 ```
 
-Trace viewer
-```
-    Setup
-    await Context.Tracing.StartAsync(new()
-        {
-            Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
-            Screenshots = true,
-            Snapshots = true,
-            Sources = true
-        });
+# Trace viewer
 
-    TearDown
-    await Context.Tracing.StopAsync(new()
-        {
-            Path = Path.Combine(
-                TestContext.CurrentContext.WorkDirectory,
-                "playwright-traces",
-                $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
-            )
-```
-Opening the trace
+```cs
+Setup
+await Context.Tracing.StartAsync(new()
+    {
+        Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
+        Screenshots = true,
+        Snapshots = true,
+        Sources = true
+    });
 
+TearDown
+await Context.Tracing.StopAsync(new()
+    {
+        Path = Path.Combine(
+            TestContext.CurrentContext.WorkDirectory,
+            "playwright-traces",
+            $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
+        )
+    });
 ```
+
+# Opening the trace
+
+```sh
 pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
 ```
 
-CI GitHub Actions
+#CI GitHub Actions
 
-playwright.yml
-
-```
-    name: Playwright Tests
-    on:
-    push:
+```yml
+name: Playwright Tests
+on:
+  push:
     branches: [ main, master ]
-    pull_request:
+  pull_request:
     branches: [ main, master ]
-    jobs:
-    test:
+jobs:
+  test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -152,11 +158,11 @@ playwright.yml
 
 Create a Repo and Push to GitHub
 
-```
-    git init
-    git add .
-    git commit -m "first commit"
-    git branch -M main
-    git remote add origin url
-    git push -u origin main 
+```sh
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin url
+git push -u origin main 
 ```
