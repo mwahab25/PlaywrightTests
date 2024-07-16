@@ -59,6 +59,7 @@ Test Hooks
         await Page.GotoAsync("https://playwright.dev");
     }
 
+Run Test
 
     dotnet test 
     dotnet test --filter "ExampleTest"
@@ -67,8 +68,7 @@ Test Hooks
 
 
 settings Example
-
-   <!--
+   
    <?xml version="1.0" encoding="utf-8"?>
    <RunSettings>
     <Playwright>
@@ -80,7 +80,7 @@ settings Example
       </LaunchOptions>
     </Playwright>
     </RunSettings>
-    -->
+    
 
     dotnet test --settings .runsettings
 
