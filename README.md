@@ -2,7 +2,7 @@ Playwright Automation Tests
 
 Playwright .NET NUnit
 
-cmd =>
+cmd
     dotnet new nunit -n PlaywrightTests
     cd PlaywrightTests
     dotnet add package Microsoft.Playwright.NUnit
@@ -10,9 +10,9 @@ cmd =>
 
 install PowerShell
 
-powershell => 
+powershell
     winget search Microsoft.PowerShell
-cmd => 
+cmd
     dotnet tool install --global PowerShell
 
 
@@ -63,26 +63,28 @@ Test Hooks
 
 settings Example
 
-<?xml version="1.0" encoding="utf-8"?>
-<RunSettings>
-  <Playwright>
-    <BrowserName>chromium</BrowserName>
-    <LaunchOptions>
-      <Headless>false</Headless>
-      <Channel>msedge</Channel>
-      <SlowMo>500</SlowMo>
-    </LaunchOptions>
-  </Playwright>
-</RunSettings>
+   <?xml version="1.0" encoding="utf-8"?>
+   <RunSettings>
+    <Playwright>
+     <BrowserName>chromium</BrowserName>
+      <LaunchOptions>
+       <Headless>false</Headless>
+       <Channel>msedge</Channel>
+       <SlowMo>500</SlowMo>
+      </LaunchOptions>
+    </Playwright>
+    </RunSettings>
 
     dotnet test --settings .runsettings
 
 Codegen
+
     pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
 
 
 Trace viewer
-Setup
+
+    Setup
     await Context.Tracing.StartAsync(new()
         {
             Title = $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}",
@@ -90,7 +92,8 @@ Setup
             Snapshots = true,
             Sources = true
         });
-TearDown
+
+    TearDown
     await Context.Tracing.StopAsync(new()
         {
             Path = Path.Combine(
@@ -99,7 +102,7 @@ TearDown
                 $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
             )
 
-Opening the trace
+    Opening the trace
     pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
 
 
@@ -135,7 +138,7 @@ jobs:
         path: bin/Debug/net8.0/playwright-traces/
 
 
-Create a Repo and Push to GitHub
+    Create a Repo and Push to GitHub
     git init
     git add .
     git commit -m "first commit"
