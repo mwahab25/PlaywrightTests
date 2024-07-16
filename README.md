@@ -1,6 +1,6 @@
-## Playwright .NET NUnit
+# Playwright with .NET and NUnit
 
-# Install Playwright
+## Install Playwright
 
 ```sh
 dotnet new nunit -n PlaywrightTests
@@ -9,20 +9,20 @@ dotnet add package Microsoft.Playwright.NUnit
 dotnet build
 ```
 
-# install PowerShell
+## Install PowerShell
 
 ```sh
 winget search Microsoft.PowerShell
 dotnet tool install --global PowerShell
 ```
 
-# install Requires Browser
+## Install Requires Browser
 
 ```sh
 pwsh bin/Debug/net8.0/playwright.ps1 install
 ```
 
-# Playwright ExampleTest
+## Playwright ExampleTest
 
 ```cs
 public class ExampleTest : PageTest
@@ -50,7 +50,7 @@ public class ExampleTest : PageTest
     }
 ```
 
-# Test Hooks
+## Test Hooks
 
 ```cs
 [SetUp]
@@ -60,7 +60,7 @@ public async Task SetUp()
 }
 ```
 
-# Run Test
+## Run Test
 
 ```sh
 dotnet test 
@@ -68,7 +68,7 @@ dotnet test --filter "ExampleTest"
 dotnet test --filter "ExampleTest1|ExampleTest2"
 ```
 
-# settings Example
+## Settings Example
    
 ```xml
     <?xml version="1.0" encoding="utf-8"?>
@@ -84,19 +84,19 @@ dotnet test --filter "ExampleTest1|ExampleTest2"
     </RunSettings>
 ```
 
-# Run with settings
+## Run with settings
 
 ```sh
 dotnet test --settings .runsettings
 ```
 
-# Codegen
+## Codegen
 
 ```sh
 pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
 ```
 
-# Trace viewer
+## Trace viewer
 
 ```cs
 Setup
@@ -119,13 +119,13 @@ await Context.Tracing.StopAsync(new()
     });
 ```
 
-# Opening the trace
+## Opening the trace
 
 ```sh
 pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
 ```
 
-#CI GitHub Actions
+## CI GitHub Actions
 
 ```yml
 name: Playwright Tests
@@ -156,7 +156,7 @@ jobs:
         path: bin/Debug/net8.0/playwright-traces/
 ```
 
-Create a Repo and Push to GitHub
+## Create a Repo and Push to GitHub
 
 ```sh
 git init
