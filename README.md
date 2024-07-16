@@ -67,7 +67,7 @@ Run Test
 
 settings Example
    
-   ```xml
+```xml
     <?xml version="1.0" encoding="utf-8"?>
    <RunSettings>
     <Playwright>
@@ -79,7 +79,7 @@ settings Example
       </LaunchOptions>
     </Playwright>
     </RunSettings>
-    ```
+```
 
 Run with settings
 ```
@@ -119,6 +119,7 @@ Trace viewer
 CI GitHub Actions
 
 playwright.yml
+
 ```
     name: Playwright Tests
     on:
@@ -149,6 +150,7 @@ playwright.yml
 ```
 
 Create a Repo and Push to GitHub
+
 ```
     git init
     git add .
