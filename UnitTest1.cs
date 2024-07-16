@@ -22,7 +22,7 @@ public class ExampleTest : PageTest
             Sources = true
         });
 
-        await Page.GotoAsync("https://playwright.dev");
+        await Page.GotoAsync("https://www.google.com/");
 
         //dotnet test --settings .runsettings
         
@@ -47,23 +47,25 @@ public class ExampleTest : PageTest
     {
 
         // Expect a title "to contain" a substring.
-        await Expect(Page).ToHaveTitleAsync(new Regex("Playwright"));
+        await Expect(Page).ToHaveTitleAsync(new Regex("Google"));
     }
 
     [Test]
     public async Task GetStartedLink()
     {
 
+        
+        await Page.GetByLabel("بحث", new() { Exact = true }).FillAsync("Playwright");
+
+        await Page.GetByLabel("بحث Google").First.ClickAsync();
+
+        //await Expect(Page.GetByRole(AriaRole.Heading,new(){Name = "Playwright"})).ToBeVisibleAsync();
+        await Expect(Page.Locator("#rhs")).ToContainTextAsync("Playwright");
+
         // Click the get started link.
-        await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
+        //await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
 
         // Expects page to have a heading with the name of Installation.
-        await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
+        //await Expect(Page.GetByRole(AriaRole.Heading, new() { Name = "Installation" })).ToBeVisibleAsync();
     } 
-
-     [Test]
-    public async Task Test1()
-    {
-        await Page.GetByRole(AriaRole.Link, new() { Name = "Get started" }).ClickAsync();
-    }
 }
