@@ -82,16 +82,17 @@ settings Example
     ```
 
 Run with settings
-
+```
     dotnet test --settings .runsettings
+```
 
 Codegen
-
+```
     pwsh bin/Debug/net8.0/playwright.ps1 codegen demo.playwright.dev/todomvc
-
+```
 
 Trace viewer
-
+```
     Setup
     await Context.Tracing.StartAsync(new()
         {
@@ -109,15 +110,16 @@ Trace viewer
                 "playwright-traces",
                 $"{TestContext.CurrentContext.Test.ClassName}.{TestContext.CurrentContext.Test.Name}.zip"
             )
-
+```
     Opening the trace
+    ```
     pwsh bin/Debug/net8.0/playwright.ps1 show-trace bin/Debug/net8.0/playwright-traces/PlaywrightTests.ExampleTest.GetStartedLink.zip
-
+    ```
 
 CI GitHub Actions
 
 playwright.yml
-
+```
     name: Playwright Tests
     on:
     push:
@@ -144,14 +146,14 @@ playwright.yml
       with:
         name: playwright-traces
         path: bin/Debug/net8.0/playwright-traces/
-
+```
 
 Create a Repo and Push to GitHub
-
+```
     git init
     git add .
     git commit -m "first commit"
     git branch -M main
     git remote add origin url
     git push -u origin main 
-
+```
