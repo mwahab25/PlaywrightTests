@@ -65,12 +65,10 @@ Run Test
     dotnet test --filter "ExampleTest"
     dotnet test --filter "ExampleTest1|ExampleTest2"
 
-
-
 settings Example
    
-   ```
-   <?xml version="1.0" encoding="utf-8"?>
+   ```xml
+    <?xml version="1.0" encoding="utf-8"?>
    <RunSettings>
     <Playwright>
      <BrowserName>chromium</BrowserName>
@@ -82,7 +80,7 @@ settings Example
     </Playwright>
     </RunSettings>
     ```
-    
+
 Run with settings
 
     dotnet test --settings .runsettings
