@@ -69,6 +69,7 @@ Run Test
 
 settings Example
    
+   ```
    <?xml version="1.0" encoding="utf-8"?>
    <RunSettings>
     <Playwright>
@@ -80,7 +81,7 @@ settings Example
       </LaunchOptions>
     </Playwright>
     </RunSettings>
-    
+    ```
 
     dotnet test --settings .runsettings
 
