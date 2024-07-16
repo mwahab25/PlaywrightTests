@@ -3,6 +3,7 @@ Playwright Automation Tests
 Playwright .NET NUnit
 
 cmd
+
     dotnet new nunit -n PlaywrightTests
     cd PlaywrightTests
     dotnet add package Microsoft.Playwright.NUnit
@@ -11,12 +12,16 @@ cmd
 install PowerShell
 
 powershell
+
     winget search Microsoft.PowerShell
+
 cmd
+
     dotnet tool install --global PowerShell
 
 
 install Requires Browser
+
     pwsh bin/Debug/net8.0/playwright.ps1 install
 
 
@@ -63,6 +68,7 @@ Test Hooks
 
 settings Example
 
+   <!--
    <?xml version="1.0" encoding="utf-8"?>
    <RunSettings>
     <Playwright>
@@ -74,6 +80,7 @@ settings Example
       </LaunchOptions>
     </Playwright>
     </RunSettings>
+    -->
 
     dotnet test --settings .runsettings
 
@@ -110,14 +117,14 @@ CI GitHub Actions
 
 playwright.yml
 
-name: Playwright Tests
-on:
-  push:
+    name: Playwright Tests
+    on:
+    push:
     branches: [ main, master ]
-  pull_request:
+    pull_request:
     branches: [ main, master ]
-jobs:
-  test:
+    jobs:
+    test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
@@ -138,7 +145,8 @@ jobs:
         path: bin/Debug/net8.0/playwright-traces/
 
 
-    Create a Repo and Push to GitHub
+Create a Repo and Push to GitHub
+
     git init
     git add .
     git commit -m "first commit"
