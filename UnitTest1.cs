@@ -53,7 +53,6 @@ public class ExampleTest : PageTest
     [Test]
     public async Task GetStartedLink()
     {
-
         
         await Page.GetByLabel("بحث", new() { Exact = true }).FillAsync("Playwright");
 
